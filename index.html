@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Clone</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>My Video Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #1e7c1e;
+      color: white;
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .video-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 100, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      background-color: black;
+      display: block;
+    }
+
+    .title {
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #1e7c1e;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">YouTube</div>
-        <input type="text" id="search" placeholder="Search...">
-    </header>
 
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Trending</a></li>
-            <li><a href="#">Subscriptions</a></li>
-        </ul>
-    </nav>
+  <header>My Video Gallery</header>
+  <div class="container" id="video-container"></div>
 
-    <!-- Video Upload Form -->
-    <div class="upload-section">
-        <h2>Upload a Video</h2>
-        <form id="uploadForm">
-            <input type="file" id="videoFile" accept="video/*" required>
-            <input type="text" id="videoTitle" placeholder="Video Title" required>
-            <button type="submit">Upload Video</button>
-        </form>
-    </div>
+  <script>
+    // Video List: file, title, and thumbnail
+    const videoList = [
+      {
+        file: "Video/video1.mp4",
+        title: "My First Video",
+        poster: "Thumbnails/video1.jpg"
+      },
+      {
+        file: "video1.mp4",
+        title: "Amazing Second Video",
+        poster: "video1.jpg"
+      }
+      // Add more videos here
+    ];
 
-    <!-- Video Grid (Dynamic Content) -->
-    <div id="video-grid" class="video-grid">
-        <!-- Video Cards will be added here dynamically -->
-    </div>
+    const container = document.getElementById('video-container');
 
-    <!-- Video Player -->
-    <div id="video-player" class="video-player">
-        <video id="video" width="100%" controls>
-            <source id="video-source" src="" type="video/mp4">
-        </video>
-    </div>
+    videoList.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+      const vid = document.createElement('video');
+      vid.src = `Video/${video.file}`;
+      vid.poster = `Thumbnails/${video.poster}`;
+      vid.controls = true;
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = video.title;
+
+      card.appendChild(vid);
+      card.appendChild(title);
+      container.appendChild(card);
+    });
+  </script>
+
 </body>
 </html>
