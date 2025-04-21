@@ -1,77 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Видео Галерея</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
-      background-color: #181818;
+      background-color: #0f0f0f;
       color: #fff;
     }
     h1 {
       text-align: center;
-      padding: 20px 0;
-      font-size: 2rem;
-      border-bottom: 1px solid #333;
+      padding: 20px;
+      font-size: 2.5rem;
+      color: #ffffff;
+      background-color: #202020;
+      margin-bottom: 0;
+      border-bottom: 1px solid #303030;
     }
     #video-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 24px;
+      padding: 30px;
     }
     .video-block {
-      background-color: #212121;
+      background-color: #181818;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-      padding: 10px;
-      width: 100%;
-      max-width: 360px;
-      transition: transform 0.3s ease;
+      overflow: hidden;
+      width: 320px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
     .video-block:hover {
       transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+    }
+    .video-title {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 12px;
+      color: #f1f1f1;
+      background-color: #202020;
+      border-top: 1px solid #303030;
+      text-align: left;
     }
     video {
       width: 100%;
-      border-radius: 8px;
-    }
-    .video-block p {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      text-align: center;
-      color: #ccc;
-      word-break: break-word;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1>Мои Видео</h1>
+  <h1>🎬 Мои Видео</h1>
   <div id="video-container"></div>
 
   <script>
     const videoList = [
-      "video1.mp4",
-      "video2.mp4"
-      // добавляй сюда
+      {
+        title: "Прогулка по парку",
+        file: "video1.mp4",
+        poster: "preview1.jpg"
+      },
+      {
+        title: "Кошка играет",
+        file: "video2.mp4",
+        poster: "preview2.jpg"
+      }
     ];
 
     const container = document.getElementById('video-container');
 
-    videoList.forEach(filename => {
+    videoList.forEach(videoData => {
       const block = document.createElement('div');
       block.className = 'video-block';
 
       const video = document.createElement('video');
-      video.src = `Video/${filename}`;
+      video.src = `Video/${videoData.file}`;
+      video.poster = `Preview/${videoData.poster}`;
       video.controls = true;
 
-      const title = document.createElement('p');
-      title.textContent = filename;
+      const title = document.createElement('div');
+      title.className = 'video-title';
+      title.textContent = videoData.title;
 
       block.appendChild(video);
       block.appendChild(title);
