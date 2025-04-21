@@ -1,6 +1,6 @@
 // Sample video data
 const videos = [
-    { title: 'Video Title 1', src: 'video/video1.mp4', description: 'This is the description for video 1.', duration: '4:20' },
+    { title: 'Video Title 1', src: 'video/video1.mp4', description: 'This is the description for video 1.', duration: '0:30' },
     { title: 'Video Title 2', src: 'video2.mp4', description: 'This is the description for video 2.', duration: '3:50' },
     { title: 'Video Title 3', src: 'video3.mp4', description: 'This is the description for video 3.', duration: '5:10' }
 ];
