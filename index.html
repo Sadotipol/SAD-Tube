@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Мої Відео</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #000000;
+    }
+    header {
+      background-color: #00FF00;
+      color: rgb(0, 0, 0);
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .video-card {
+      background-color: #00FF00;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 100, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .video-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgb(0, 255, 0);
+    }
+    video {
+      width: 100%;
+      height: auto;
+      background-color: black;
+      display: block;
+    }
+    .title {
+      padding: 10px 15px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>SAD Tube</header>
+  <div class="container" id="video-container"></div>
+
+  <script>
+    const videoList = [
+      {
+        file: "video1.mp4",
+        title: "Перше відео",
+        poster: "video1.jpg"
+      },
+      {
+        file: "video2.mp4",
+        title: "Друге відео",
+        poster: "video2.jpg"
+      }
+      // додавай нові відео тут
+    ];
+
+    const container = document.getElementById('video-container');
+
+    videoList.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+
+      const vid = document.createElement('video');
+      vid.src = `Video/${video.file}`;
+      vid.poster = `Thumbnails/${video.poster}`;
+      vid.controls = true;
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = video.title;
+
+      card.appendChild(vid);
+      card.appendChild(title);
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
