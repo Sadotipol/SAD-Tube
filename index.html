@@ -2,104 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Video Gallery</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Видео Галерея</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
+      background-color: #181818;
+      color: #fff;
     }
-
-    header {
-      background-color: #ff0000;
-      color: white;
+    h1 {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 2rem;
+      border-bottom: 1px solid #333;
+    }
+    #video-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
-      padding: 30px;
+      padding: 20px;
     }
-
-    .video-card {
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 100, 0, 0.1);
-      transition: transform 0.2s ease;
+    .video-block {
+      background-color: #212121;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      padding: 10px;
+      width: 100%;
+      max-width: 360px;
+      transition: transform 0.3s ease;
     }
-
-    .video-card:hover {
-      transform: scale(1.02);
+    .video-block:hover {
+      transform: scale(1.03);
     }
-
     video {
       width: 100%;
-      height: auto;
-      background-color: black;
-      display: block;
+      border-radius: 8px;
     }
-
-    .title {
-      padding: 10px 15px;
-      font-size: 16px;
-      font-weight: 500;
-      color: #1e7c1e;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .video-block p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      text-align: center;
+      color: #ccc;
+      word-break: break-word;
     }
   </style>
 </head>
 <body>
 
-  <header>My Video Gallery</header>
-  <div class="container" id="video-container"></div>
+  <h1>Мои Видео</h1>
+  <div id="video-container"></div>
 
   <script>
-    // Video List: file, title, and thumbnail
     const videoList = [
-      {
-        file: "Video/video1.mp4",
-        title: "My First Video",
-        poster: "Thumbnails/video1.jpg"
-      },
-      {
-        file: "video1.mp4",
-        title: "Amazing Second Video",
-        poster: "video1.jpg"
-      }
-      // Add more videos here
+      "video1.mp4",
+      "video2.mp4"
+      // добавляй сюда
     ];
 
     const container = document.getElementById('video-container');
 
-    videoList.forEach(video => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
+    videoList.forEach(filename => {
+      const block = document.createElement('div');
+      block.className = 'video-block';
 
-      const vid = document.createElement('video');
-      vid.src = `Video/${video.file}`;
-      vid.poster = `Thumbnails/${video.poster}`;
-      vid.controls = true;
+      const video = document.createElement('video');
+      video.src = `Video/${filename}`;
+      video.controls = true;
 
-      const title = document.createElement('div');
-      title.className = 'title';
-      title.textContent = video.title;
+      const title = document.createElement('p');
+      title.textContent = filename;
 
-      card.appendChild(vid);
-      card.appendChild(title);
-      container.appendChild(card);
+      block.appendChild(video);
+      block.appendChild(title);
+      container.appendChild(block);
     });
   </script>
 
